@@ -1,6 +1,7 @@
 import * as THREE from 'three'
-import { createSide } from './side';
-import { createTopPr } from './topProfile';
+import { createSide } from './side'
+import { createTopPr } from './topProfile'
+import { createInner } from "./inner";
 
 import { rotateArrY, translateArr, createFace } from "../../helpers/geomHelpers";
 
@@ -14,19 +15,17 @@ const createDoorGeometry = (params) => {
     
     const t = createTopPr(params)
     v.push(...t.v)
-    
+
+
     v.push(...createFace(s.wst, s.est, t.eso, t.wso))
     v.push(...createFace(s.wnt, s.wst, t.wso, t.wno))
     v.push(...createFace(t.eso, s.est, s.ent, t.eno))
     v.push(...createFace(t.wno, t.eno, s.ent, s.wnt))
 
-    v.push(...createFace(t.wsi, t.esi, t.eni, t.wni))
-    /** top facet */
-    //if (facetT) {
-    //    const { points } = FACET22
-        
-    //    console.log('%%%')
-   // }
+
+    /** cap top */
+    const i = createInner(params, t)
+    v.push(...i.v)
 
 
 

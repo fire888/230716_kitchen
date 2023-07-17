@@ -15,7 +15,12 @@ export const BOX00_SCHEME = {
         type: 'facet11',
     },
     facetT: {
-        type: 'faset33',
+        type: 'facet33',
         offset: 57, 
+    },
+    facetInner: {
+        type: 'facet44',
+        count: 3,
+        rotationY: 0,
     },
 }

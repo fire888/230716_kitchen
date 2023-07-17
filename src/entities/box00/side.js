@@ -1,4 +1,4 @@
-import { FACET11 } from '../../schemes/shemeFacet11'
+import { FACET11 } from '../../schemes/schemeFacet11'
 import { rotateArrY, translateArr } from "../../helpers/geomHelpers";
 
 export const createSide = (params) => {

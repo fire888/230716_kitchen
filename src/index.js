@@ -9,7 +9,7 @@ import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
 import * as THREE from "three";
 import { ARR_STATES } from './constants/animations'
 import { createBox00 } from './entities/box00/box00'
-import { FACET11 } from './schemes/shemeFacet11'
+import { FACET11 } from './schemes/schemeFacet11'
 import { BOX00_SCHEME } from './schemes/shemeBox00'
 
 

@@ -17,6 +17,7 @@ export const FACET33 = (() => {
         [29, -9],
         [39, -1],
         [41, -1],
+        [41, 0],
     ]
 
     return {
@@ -27,4 +28,3 @@ export const FACET33 = (() => {
         points: arr,
     }
 })()
-                

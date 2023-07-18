@@ -12,7 +12,7 @@ export const createTopPr = (params) => {
     const v = []
     
     const { w, d, h, facetT } = params
-    const { offset } = facetT 
+    const { offsetX, offsetZ } = facetT 
 
     const { points } = F[facetT.type]
     const profile = []
@@ -22,19 +22,19 @@ export const createTopPr = (params) => {
 
     const profileWS = [...profile]
     rotateArrY(profileWS, Math.PI / 4)
-    translateArr(profileWS, offset, 0, -offset)
+    translateArr(profileWS, offsetX, 0, -offsetZ)
 
     const profileWN = [...profile]
     rotateArrY(profileWN, -Math.PI / 4)
-    translateArr(profileWN, offset, 0, -d + offset)
+    translateArr(profileWN, offsetX, 0, -d + offsetZ)
 
     const profileES = [...profile]
     rotateArrY(profileES, Math.PI * 0.75)
-    translateArr(profileES, w - offset, 0, -offset)
+    translateArr(profileES, w - offsetX, 0, -offsetZ)
 
     const profileEN = [...profile]
     rotateArrY(profileEN, -Math.PI * 0.75)
-    translateArr(profileEN, w - offset, 0, -d + offset)
+    translateArr(profileEN, w - offsetX, 0, -d + offsetZ)
 
     const arrProfiles = [
         profileWN,

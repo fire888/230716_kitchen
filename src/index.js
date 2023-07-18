@@ -97,11 +97,20 @@ const initApp = () => {
             })
             .listen()
 
-            gui.add(BOX00_SCHEME.facetT, 'offset')
+            gui.add(BOX00_SCHEME.facetT, 'offsetX')
             .min(PARAMS_GUI.params['offsetfacet'].min)
             .max(PARAMS_GUI.params['offsetfacet'].max)
             .onChange(v => {
-                BOX00_SCHEME.facetT.offset = v
+                BOX00_SCHEME.facetT.offsetX = v
+                box.change(BOX00_SCHEME)
+            })
+            .listen()
+
+            gui.add(BOX00_SCHEME.facetT, 'offsetZ')
+            .min(PARAMS_GUI.params['offsetfacet'].min)
+            .max(PARAMS_GUI.params['offsetfacet'].max)
+            .onChange(v => {
+                BOX00_SCHEME.facetT.offsetZ = v
                 box.change(BOX00_SCHEME)
             })
             .listen()

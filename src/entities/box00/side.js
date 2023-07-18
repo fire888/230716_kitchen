@@ -1,12 +1,14 @@
 import { FACET11 } from '../../schemes/schemeFacet11'
 import { FACET12 } from '../../schemes/schemeFacet12';
 import { FACET13 } from '../../schemes/schemeFacet13';
+import { FACET14 } from '../../schemes/schemeFacet14';
 import { rotateArrY, translateArr } from "../../helpers/geomHelpers";
 
 const F = {
     FACET11,
     FACET12,
     FACET13,
+    FACET14,
 }
 export const createSide = (params) => {
     const v = []

@@ -90,7 +90,7 @@ const initApp = () => {
             })
             .listen()
 
-            gui.add(BOX00_SCHEME.facetS, 'type', ['FACET11', 'FACET12', 'FACET13'])
+            gui.add(BOX00_SCHEME.facetS, 'type', ['FACET11', /*'FACET14',*/ 'FACET12', 'FACET13'])
             .onChange(v => {
                 BOX00_SCHEME.facetS.type = v
                 box.change(BOX00_SCHEME)

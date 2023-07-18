@@ -1,14 +1,20 @@
 import { FACET33 } from '../../schemes/schemeFacet33'
+import { FACET22 } from '../../schemes/schemeFacet22'
 import { rotateArrY, translateArr } from "../../helpers/geomHelpers";
+
+
+const F = {
+    FACET22,
+    FACET33,
+}
 
 export const createTopPr = (params) => {
     const v = []
-
-    console.log(params)
+    
     const { w, d, h, facetT } = params
     const { offset } = facetT 
 
-    const { points } = FACET33
+    const { points } = F[facetT.type]
     const profile = []
     for (let i = 0; i < points.length; ++i) {
         profile.push(points[i][0], h + points[i][1], 0)

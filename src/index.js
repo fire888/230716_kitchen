@@ -11,9 +11,10 @@ import { ARR_STATES } from './constants/animations'
 import { createBox00 } from './entities/box00/box00'
 import { FACET11 } from './schemes/schemeFacet11'
 import { BOX00_SCHEME } from './schemes/shemeBox00'
-
+import { PARAMS_GUI } from './constants/gui'
 
 const root = {}
+
 
 const initApp = () => {
     root.studio = createStudio(root)
@@ -49,69 +50,86 @@ const initApp = () => {
             }),
         ]
 
-
-        //const door = createDoor(root, PARAMS.door)
-        //door.mesh.receiveShadow = PARAMS_GUI.receiveShadow
-        //door.mesh.castShadow = true
-        //root.studio.addToScene(door.mesh)
-        //door.mesh.rotation.y = PARAMS.door.openAngle
-        //door.meshGeom.rotation.y = PARAMS.door.openAngle
-        //door.meshGeom.position.x = -300
-        //root.studio.addToScene(door.meshGeom)
-
         const box = createBox00(root, BOX00_SCHEME)
-        //box.mesh.receiveShadow = PARAMS_GUI.receiveShadow
         box.mesh.castShadow = true
         root.studio.addToScene(box.mesh)
 
-        //box.meshGeom.position.x = -300
-        //root.studio.addToScene(box.meshGeom)
-
-
-        let updaterParams = null
-        let currentStateIndex = 0
-        // const createUpdater = () => {
-        //     ++currentStateIndex
-        //     if (currentStateIndex === ARR_STATES.length) {
-        //         currentStateIndex = 0
-        //     }
-        //     updaterParams = animateToNew(ARR_STATES[currentStateIndex], v => {
-        //         door.setParams(v)
-        //         door.mesh.rotation.y = v.openAngle
-        //         door.meshGeom.rotation.y = v.openAngle
-        //         box.setParams(v)
-        //         for (let key in v) {
-        //             PARAMS.door[key] = v[key]
-        //         }
-        //     }, createUpdater)
-        // }
-        // createUpdater()
-
-
         root.frameUpdater = startFrameUpdater(root)
         root.frameUpdater.on(n => {
-        //    if (PARAMS_GUI.animate) {
-        //        updaterParams && updaterParams.update()
-        //    }
             root.studio.render()
         })
+        const gui = new GUI()
         hideStartScreen(root, () => {
-            // const gui = new GUI()
-            // gui.add( PARAMS_GUI,'animate')
-            // gui.add( PARAMS_GUI,'receiveShadow').onChange(v =>  {
-            //     box.mesh.receiveShadow = v
-            //     door.mesh.receiveShadow = v
-            // })
-            // for (let key in PARAMS.door) {
-            //     gui.add(PARAMS.door, key).min( PARAMS_GUI.door[key].min).max(PARAMS_GUI.door[key].max).onChange(v => {
-            //         PARAMS.door[key] = v
-            //         door.setParams(PARAMS.door)
-            //         box.setParams(PARAMS.door)
-            //         door.mesh.rotation.y = PARAMS.door.openAngle
-            //         door.meshGeom.rotation.y = PARAMS.door.openAngle
-            //     }).listen()
-            // }
-            // gui.open()
+
+            const update = () => {}
+
+            gui.add(BOX00_SCHEME, 'w')
+            .min(PARAMS_GUI.params['w'].min)
+            .max(PARAMS_GUI.params['w'].max)
+            .onChange(v => {
+                BOX00_SCHEME['w'] = v
+                box.change(BOX00_SCHEME)
+            })
+            .listen()
+
+            gui.add(BOX00_SCHEME, 'h')
+            .min(PARAMS_GUI.params['h'].min)
+            .max(PARAMS_GUI.params['h'].max)
+            .onChange(v => {
+                BOX00_SCHEME['h'] = v
+                box.change(BOX00_SCHEME)
+            })
+            .listen()
+
+            gui.add(BOX00_SCHEME, 'd')
+            .min(PARAMS_GUI.params['d'].min)
+            .max(PARAMS_GUI.params['d'].max)
+            .onChange(v => {
+                BOX00_SCHEME['d'] = v
+                box.change(BOX00_SCHEME)
+            })
+            .listen()
+
+            gui.add(BOX00_SCHEME.facetS, 'type', ['FACET11', 'FACET12', 'FACET13'])
+            .onChange(v => {
+                BOX00_SCHEME.facetS.type = v
+                box.change(BOX00_SCHEME)
+            })
+            .listen()
+
+            gui.add(BOX00_SCHEME.facetT, 'offset')
+            .min(PARAMS_GUI.params['offsetfacet'].min)
+            .max(PARAMS_GUI.params['offsetfacet'].max)
+            .onChange(v => {
+                BOX00_SCHEME.facetT.offset = v
+                box.change(BOX00_SCHEME)
+            })
+            .listen()
+
+            gui.add(BOX00_SCHEME.facetT, 'type', ['FACET22', 'FACET33'])
+            .onChange(v => {
+                BOX00_SCHEME.facetT.type = v
+                box.change(BOX00_SCHEME)
+            })
+            .listen()
+
+
+            gui.add(BOX00_SCHEME.facetInner, 'count', 0, 10, 1)
+            .onChange(v => {
+                BOX00_SCHEME.facetInner.count = v
+                box.change(BOX00_SCHEME)
+            })
+            .listen()
+
+
+            gui.add(BOX00_SCHEME.facetInner, 'rotationY', ['0', '90'])
+            .onChange(v => {
+                BOX00_SCHEME.facetInner.rotation = v
+                box.change(BOX00_SCHEME)
+            })
+            .listen()
+
+            gui.open()
         })
     })
 }

@@ -1,12 +1,20 @@
 import { FACET11 } from '../../schemes/schemeFacet11'
+import { FACET12 } from '../../schemes/schemeFacet12';
+import { FACET13 } from '../../schemes/schemeFacet13';
 import { rotateArrY, translateArr } from "../../helpers/geomHelpers";
 
+const F = {
+    FACET11,
+    FACET12,
+    FACET13,
+}
 export const createSide = (params) => {
     const v = []
 
-    const { w, d, h, facetT } = params
+    const { w, d, h, facetS } = params
 
-    const { points } = FACET11
+    //const { points } = FACET11
+    const { points } = F[facetS.type]
     const profile = [0, 0, 0]
     for (let i = 0; i < points.length; ++i) {
         profile.push(points[i][0], h - FACET11.h + points[i][1], 0,)

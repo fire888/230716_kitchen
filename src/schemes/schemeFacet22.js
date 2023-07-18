@@ -20,7 +20,7 @@
     return {
         type: 'dataFacetPoints',
         name: 'facet22',
-        h: 13,
+        h: 9,
         w: 26,
         points: arr,
     }

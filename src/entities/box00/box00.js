@@ -6,7 +6,7 @@ import { createInner } from "./inner";
 import { rotateArrY, translateArr, createFace } from "../../helpers/geomHelpers";
 
 const createDoorGeometry = (params) => {
-    console.log(params)
+    //console.log(params)
     let v = []
 
     const s = createSide(params)
@@ -44,7 +44,7 @@ const createDoorGeometry = (params) => {
 
 
 export const createBox00 = (root, params) => {
-    const geometryBox = createDoorGeometry(params)
+    let geometryBox = createDoorGeometry(params)
 
 
     const mesh = new THREE.Mesh(
@@ -62,5 +62,10 @@ export const createBox00 = (root, params) => {
         meshGeom,
         mesh,
         ...geometryBox,
+        change: params => {
+            geometryBox.geometry.dispose()
+            geometryBox = createDoorGeometry(params)
+            mesh.geometry = geometryBox.geometry 
+        }
     }
 }
